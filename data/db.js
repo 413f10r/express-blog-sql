@@ -5,12 +5,12 @@ const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "root",
-    database: "posts"
+    database: "db-posts"
 });
 
 connection.connect((err) => {
     if (err) throw err;
-    console.log('connect to mysql')
+    console.log('Connect to mysql')
 
 })
 

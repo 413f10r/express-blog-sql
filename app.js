@@ -1,11 +1,22 @@
 const express = require("express")
 const app = express()
 const port = 3000
+const connection = require("./data/db")
+// const cors = require('cors') 
+
+const postRouter = require('./routers/postRouter')
+
+const errorsHandler = require("./middlewares/errorsHndler")
+const notFound = require("./middlewares/notFound")
+
+app.use(express.json())
+app.use("/posts", postRouter)
+
+app.use(notFound) // erorri nelle rotte 
+app.use(errorsHandler) // i possibili errori dell'applicazione.
 
 
-app.get("/api/posts", (req, res) => {
-    res.send("hello world")
-})
+
 app.listen(port, () => {
-    console.log(`la mia porta http://localhost:${port}/api/posts`)
+    console.log(`La mia porta http://localhost:${port}/posts`)
 })
